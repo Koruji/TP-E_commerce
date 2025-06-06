@@ -7,8 +7,13 @@ import {
   ScrollRestoration,
 } from "react-router";
 
+import 'bootstrap/dist/css/bootstrap.min.css'; 
+import 'bootstrap-icons/font/bootstrap-icons.css';
+
 import type { Route } from "./+types/root";
 import "./app.css";
+import Header from "./layouts/Header/Header";
+import Footer from "./layouts/Footer/Footer";
 
 export const links: Route.LinksFunction = () => [
   { rel: "preconnect", href: "https://fonts.googleapis.com" },
@@ -33,7 +38,9 @@ export function Layout({ children }: { children: React.ReactNode }) {
         <Links />
       </head>
       <body>
+        <Header></Header>
         {children}
+        <Footer></Footer>
         <ScrollRestoration />
         <Scripts />
       </body>
