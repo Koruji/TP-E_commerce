@@ -1,0 +1,22 @@
+.product-image {
+    max-width: 100px;
+    min-width: 100px;
+}
+
+.list-item {
+    display: flex;
+    flex-direction: row;
+}
+
+.list-item button{
+    margin-left: auto;
+}
+
+.list-item div {
+    margin-left: 30px;
+}
+
+.trash,
+.delete {
+    background-color: #EC8E7B !important;
+}

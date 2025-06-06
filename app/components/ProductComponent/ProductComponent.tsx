@@ -12,13 +12,12 @@ export default function ProductComponent() {
         getProducts();
         if(products) {
             setIsLoading(false);
-            console.table(products);
         }
     }, []);
 
     return (
     <>
-        {error && <p>{error}</p>}
+        {error !== "" && <p>{error}</p>}
 
         {isLoading && !error && <p>Chargement des données...</p>}
 

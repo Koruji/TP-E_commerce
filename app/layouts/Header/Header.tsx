@@ -13,13 +13,13 @@ export default function Header() {
                 <NavLink to="/" className="btn text-decoration-none">
                     Menu
                 </NavLink>
-                <NavLink to="/" className="btn text-decoration-none">
+                {/* <NavLink to="/" className="btn text-decoration-none">
                     Se connecter
                 </NavLink>
                 <NavLink to="/" className="btn text-decoration-none">
                     Se déconnecter
-                </NavLink>
-                <NavLink to="/" className="btn text-decoration-none">
+                </NavLink> */}
+                <NavLink to="/cart" className="btn text-decoration-none">
                     <i className="bi bi-basket"></i>
                 </NavLink>
             </ul>
