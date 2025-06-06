@@ -1,12 +1,13 @@
+import MenuView from "~/pages/MenuView/MenuView";
 import type { Route } from "./+types/home";
 
 export function meta({}: Route.MetaArgs) {
   return [
-    { title: "New React Router App" },
-    { name: "description", content: "Welcome to React Router!" },
+    { title: "MarketPlace" },
+    { name: "description", content: "Page de menu de MarketPlace" },
   ];
 }
 
 export default function Home() {
-  return <></>;
+  return <MenuView/>;
 }

@@ -1,0 +1,35 @@
+section {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    grid-template-rows: repeat(4, 1fr);
+    gap: 15px;
+    margin: 0;
+}
+
+.product-item {
+    background-color: white;
+}
+
+.product-item img{
+    margin-top: 20px;
+    max-width: 100px;
+    min-width: 100px;
+    justify-content: center;
+}
+
+.product-item h5 {
+    font-size: smaller;
+}
+
+.product-item a {
+    text-decoration: none;
+    text-align: center;
+    background-color: #F0E4D9;
+    padding: 7px;
+    border-radius: 0.7rem;
+    color: #3E332E;
+}
+
+.product-item a:hover {
+    background-color: #EBDACA;
+}
