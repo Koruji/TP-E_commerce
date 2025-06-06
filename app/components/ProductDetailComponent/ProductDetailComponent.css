@@ -1,0 +1,20 @@
+.product-detail {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: white;
+    width: fit-content;
+    border-radius: 1rem;
+}
+
+.product-img {
+    max-width: 100px;
+    min-width: 100px;
+}
+
+.product {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}

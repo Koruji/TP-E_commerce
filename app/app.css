@@ -6,3 +6,12 @@ body {
     color: #3E332E;
     background-color: #FCF9F6;
 }
+
+button:hover {
+    background-color: #EBDACA !important;
+}
+
+button {
+    background-color: #AD7F58 !important;
+    color: #3E332E !important;
+}

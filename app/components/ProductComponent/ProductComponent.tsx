@@ -32,7 +32,7 @@ export default function ProductComponent() {
                             <p className="card-text">
                                 {item.price} €
                             </p>
-                            <NavLink to="/">Voir plus</NavLink>
+                            <NavLink to={`/product/${item.id}`}>Voir plus</NavLink>
                         </div>
                     </div>
                 ))}
