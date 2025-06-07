@@ -1,6 +1,6 @@
 import { useContext, useEffect, useState } from "react";
 import { AuthContext } from "~/contexts/auth/AuthContext";
-import "./ClientConnexionView.css";
+import "./StyleConnexionView.css";
 
 export default function ClientConnexionView() {
 
@@ -11,8 +11,6 @@ export default function ClientConnexionView() {
     const handleSubmit = (formData: FormData) => {
         const username = formData.get("username") as string;
         const password = formData.get("password") as string;
-        console.log(username);
-        console.log(password);
         connectToAPI({username, password});
         if(isLogged) {
             setIsLoading(false);

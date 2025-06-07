@@ -4,7 +4,7 @@ import { useContext } from "react";
 import { AuthContext } from "~/contexts/auth/AuthContext";
 
 export default function Header() {
-    const {isLogged} = useContext(AuthContext);
+    const {isLogged, isLoggedAdmin} = useContext(AuthContext);
 
     return (
         <header className="d-flex flex-wrap justify-content-center py-3 mb-4 border-bottom">
@@ -29,6 +29,15 @@ export default function Header() {
                 <NavLink to="/cart" className="btn text-decoration-none">
                     <i className="bi bi-basket"></i>
                 </NavLink>
+                {isLoggedAdmin ? (
+                    <NavLink to="/deconnexion-admin" className="btn text-decoration-none">
+                        <i className="bi bi-x-square"></i>
+                    </NavLink>
+                ) : (
+                    <NavLink to="/connexion-admin" className="btn text-decoration-none">
+                        <i className="bi bi-gear-fill"></i>
+                    </NavLink>
+                )}
             </ul>
         </header>
     );

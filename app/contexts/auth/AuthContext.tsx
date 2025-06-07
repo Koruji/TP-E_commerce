@@ -6,11 +6,13 @@ interface AuthContextI {
     error: string,
     users: UserI[],
     isLogged: boolean,
+    isLoggedAdmin: boolean,
     fetchAllUsers: () => Promise<void>,
     connectToAPI: (user: {username: string, password: string}) => Promise<void>,
     handleConnexion: (state: boolean) => void,
     deleteUser: () => void,
-
+    createAdmin: (admin: {username: string, password: string}) => void,
+    disconnectAdmin: () =>void
 }
 
 export const AuthContext = createContext<AuthContextI>(null!);
@@ -20,8 +22,10 @@ export const AuthProvider = ({children}: {children: ReactNode}) => {
     const [error, setError] = useState<string>("");
     const [users, setUsers] = useState<UserI[]>([]);
     const [isLogged, setIsLogged] = useState(false);
+    const [isLoggedAdmin, setIsLoggedAdmin] = useState(false);
     const [readSessionInfos, setReadSessionInfos] = useState(true);
     const [user, setUser] = useState<UserI>({} as UserI);
+    const [admin, setAdmin] = useState<{ username: string, password: string }>({username: '', password: ''});
     const navigate = useNavigate();
 
     const fetchAllUsers = async () => {
@@ -33,7 +37,6 @@ export const AuthProvider = ({children}: {children: ReactNode}) => {
 
     const connectToAPI = async (user: {username: string, password: string}) => {
         try {
-            console.log("je passe par connect API");
             const response = await fetch("https://fakestoreapi.com/auth/login", {
                 method: "POST",
                 headers: {
@@ -65,7 +68,7 @@ export const AuthProvider = ({children}: {children: ReactNode}) => {
         }
     }
 
-    // deconnexion user
+    // deconnexion client
     const deleteUser = () => {
         if(sessionStorage.getItem("client")) {
             sessionStorage.removeItem("client");
@@ -94,15 +97,52 @@ export const AuthProvider = ({children}: {children: ReactNode}) => {
         }
     }, [readSessionInfos]);
 
+    //partie administrateur
+    const createAdmin = (admin: {username: string, password: string}) => {
+        if(!sessionStorage.getItem("admin")) {
+            sessionStorage.setItem("admin", JSON.stringify({username: admin.username, password: admin.password}));
+            handleConnexionAdmin(true);
+        }
+    }
+
+    const getAdminSession = () => {
+        const adminSession = sessionStorage.getItem("admin")
+        return adminSession ? JSON.parse(adminSession) : undefined;
+    }
+
+    const disconnectAdmin = () => {
+        if(sessionStorage.getItem("admin")) {
+            sessionStorage.removeItem("admin");
+            handleConnexionAdmin(false);
+        }
+    }
+
+    const handleConnexionAdmin = (state: boolean) => {
+        setIsLoggedAdmin(state);
+    }; 
+
+    useEffect(() => {
+        if(readSessionInfos){
+            const savedAdmin = getAdminSession();
+            if(savedAdmin){
+                setAdmin(savedAdmin);
+                handleConnexionAdmin(true);
+            }
+        }
+    }, [readSessionInfos]);
+
     return(
         <AuthContext.Provider value={{
             error,
             users,
             isLogged,
+            isLoggedAdmin,
             connectToAPI,
             handleConnexion,
             deleteUser,
-            fetchAllUsers
+            fetchAllUsers,
+            createAdmin,
+            disconnectAdmin
         }}>
             {children}
         </AuthContext.Provider>

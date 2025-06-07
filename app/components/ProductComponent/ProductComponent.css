@@ -11,10 +11,10 @@
 }
 
 .product-item img{
-    margin-top: 20px;
+    margin: 20px auto 0;
     max-width: 100px;
     min-width: 100px;
-    justify-content: center;
+    display: block; 
 }
 
 .product-item h5 {
@@ -32,4 +32,8 @@
 
 .product-item a:hover {
     background-color: #EBDACA;
+}
+
+.card-foot {
+    background-color: #F0E4D9;
 }

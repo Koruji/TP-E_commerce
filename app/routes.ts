@@ -10,4 +10,6 @@ export default [
     route("connexion", "routes/client-connexion.tsx"),
     route("success-log", "pages/ConnexionViews/ClientProfilView.tsx"),
     route("deconnexion", "pages/ConnexionViews/ClientDeconnexionView.tsx"),
+    route("connexion-admin", "routes/admin-connexion.tsx"),
+    route("deconnexion-admin", "pages/ConnexionViews/AdminDeconnexionView.tsx"),
 ] satisfies RouteConfig;
