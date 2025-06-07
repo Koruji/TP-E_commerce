@@ -15,6 +15,8 @@ export default function PriceComponent({cart = []}: PriceComponentProps) {
         cart.forEach(product => {
             price += product.price;
         });
+        let tva = price * 0.2;
+        price = price + tva;
         setPrice(price);
     };
 
@@ -26,6 +28,7 @@ export default function PriceComponent({cart = []}: PriceComponentProps) {
         <section className="d-flex flex-row justify-content-between prix">
             <p><strong>Prix total</strong></p>
             <p>{price} €</p>
+            <p className="text-danger">TVA 20%</p>
         </section>
     );
 }
