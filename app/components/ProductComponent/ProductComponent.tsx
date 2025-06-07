@@ -1,14 +1,17 @@
 import { useContext, useEffect, useState } from "react";
-import { NavLink } from "react-router";
+import { NavLink, useNavigate } from "react-router";
 import { ProductContext } from "~/contexts/ProductContext/ProductContext";
 import type { ProductI } from "~/models/Products/product.interface";
 import "./ProductComponent.css";
 import { AuthContext } from "~/contexts/auth/AuthContext";
+import { ProductModalComponent } from "../ProductModalComponent/ProductModalComponent";
 
 export default function ProductComponent() {
     const {products, getProducts, error} = useContext(ProductContext);
     const {isLoggedAdmin} = useContext(AuthContext);
     const [isLoading, setIsLoading] = useState(true);
+    const [showModal, setShowModal] = useState(false);
+    const [selectedProduct, setSelectedProduct] = useState<number>(null!);
 
     useEffect(() => {
         getProducts();
@@ -35,12 +38,24 @@ export default function ProductComponent() {
                             <p className="card-text">
                                 {item.price} €
                             </p>
+                            {isLoggedAdmin && (
+                                <button className="btn" onClick={() => {
+                                    setShowModal(true);
+                                    setSelectedProduct(item.id);
+                                }}>
+                                    <i className="bi bi-gear-fill">Modifier le produit</i>
+                                </button>
+                            )}
                         </div>
                         <div className="card-footer text-body-secondary text-center card-foot">
                             <NavLink to={`/product/${item.id}`}>Voir plus</NavLink>
                         </div>
                     </div>
                 ))}
+                <ProductModalComponent showModal={showModal} selectedProduct={selectedProduct} onClose={() => {
+                    setShowModal(false);
+                    getProducts();
+                }}/>
             </section>
         )}
     </>

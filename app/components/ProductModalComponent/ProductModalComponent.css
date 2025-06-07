@@ -1,0 +1,35 @@
+.modal-container {
+    position: fixed;
+    top: 20%;
+    left: 10%;
+    background: #FEFCFE;
+    border-radius: 1rem;
+    padding: 1rem;
+    min-width: 82%;
+    display: none;
+    z-index: 10;
+}
+
+.modal-overlay {
+    position: fixed;
+    top: 0; 
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.25);
+    backdrop-filter: blur(4px);
+}
+
+.modal-container.visible {
+    display: block;
+}
+
+.modal-close {
+    position: absolute;
+    top: 4px;
+    right: 6px;
+    font-size: 1.2rem;
+    background: none;
+    border: none;
+    cursor: pointer;
+}
