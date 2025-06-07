@@ -1,0 +1,10 @@
+.connexion-button {
+    width: fit-content !important;
+    background-color: #E4CDB7 !important;   
+}
+
+.connexion-reset {
+    width: fit-content !important;
+    background-color: #EC8E7B !important;
+    margin-left: auto !important;
+}

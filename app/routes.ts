@@ -7,4 +7,7 @@ export default [
         route(":productId", "pages/ProductDetailsView/ProductDetailsView.tsx")
     ]),
     route("cart", "routes/cart.tsx"),
+    route("connexion", "routes/client-connexion.tsx"),
+    route("success-log", "pages/ConnexionViews/ClientProfilView.tsx"),
+    route("deconnexion", "pages/ConnexionViews/ClientDeconnexionView.tsx"),
 ] satisfies RouteConfig;

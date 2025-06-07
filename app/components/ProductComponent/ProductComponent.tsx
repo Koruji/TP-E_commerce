@@ -22,7 +22,7 @@ export default function ProductComponent() {
         {isLoading && !error && <p>Chargement des données...</p>}
 
         {!isLoading && !error && (
-            <section>
+            <section className="grid">
                 {products.map((item: ProductI) => (
                     <div className="card product-item align-items-center" key={item.id}>
                         <img src={item.image} className="card-img-top"/>
