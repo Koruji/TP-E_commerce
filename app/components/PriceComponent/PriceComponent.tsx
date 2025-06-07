@@ -17,7 +17,7 @@ export default function PriceComponent({cart = []}: PriceComponentProps) {
         });
         let tva = price * 0.2;
         price = price + tva;
-        setPrice(price);
+        setPrice(Number(price.toFixed(2)));
     };
 
     useEffect(() => (

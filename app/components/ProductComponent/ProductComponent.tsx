@@ -12,6 +12,14 @@ export default function ProductComponent() {
     const [isLoading, setIsLoading] = useState(true);
     const [showModal, setShowModal] = useState(false);
     const [selectedProduct, setSelectedProduct] = useState<number>(null!);
+    const [currentPage, setCurrentPage] = useState(1);
+    
+    const pages = 5;
+    const indexOfLastProduct = currentPage * pages;
+    const indexOfFirstProduct = indexOfLastProduct - pages;
+    const currentProducts = products.slice(indexOfFirstProduct, indexOfLastProduct);
+    const totalPages = Math.ceil(products.length / pages);
+
 
     useEffect(() => {
         getProducts();
@@ -29,8 +37,9 @@ export default function ProductComponent() {
         {isLoggedAdmin && (<h3 className="text-center text-danger mb-3"><strong>Connexion administrateur</strong></h3>)}
 
         {!isLoading && !error && (
+            <>
             <section className="grid">
-                {products.map((item: ProductI) => (
+                {currentProducts.map((item: ProductI) => (
                     <div className="card product-item text-center" key={item.id}>
                         <img src={item.image} className="card-img-top"/>
                         <div className="card-body">
@@ -57,6 +66,24 @@ export default function ProductComponent() {
                     getProducts();
                 }}/>
             </section>
+            <div className="pagination m-4">
+                <button
+                    className="btn page"
+                    onClick={() => setCurrentPage(prev => Math.max(prev - 1, 1))}
+                    disabled={currentPage === 1}>
+                        Précédent
+                </button>
+                    
+                <span>Page {currentPage} / {totalPages}</span>
+
+                <button
+                    className="btn page"
+                    onClick={() => setCurrentPage(prev => Math.min(prev + 1, totalPages))}
+                    disabled={currentPage === totalPages}>
+                        Suivant
+                </button>
+            </div>
+            </>
         )}
     </>
     );
