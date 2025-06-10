@@ -7,4 +7,4 @@ d'authentification basique. <br>
 
 _________________________________________________________
 ### Devoir noté - semaine ReactJS et communication vers une API<br>
-**Note** : ?/20
+**Note** : 18.5/20
